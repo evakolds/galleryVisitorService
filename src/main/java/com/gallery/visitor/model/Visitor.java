@@ -1,5 +1,7 @@
 package com.gallery.visitor.model;
 
+import com.gallery.visitor.VisitorRequest;
+import com.gallery.visitor.VisitorResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -28,5 +30,21 @@ public final class Visitor {
         this.name = name;
         this.money = money;
         this.age = age;
+    }
+
+    public static Visitor fromVisitorRequest(VisitorRequest visitorRequest) {
+        return new Visitor(UUID.randomUUID(),
+                visitorRequest.getName(),
+                visitorRequest.getMoney(),
+                visitorRequest.getAge());
+    }
+
+    public VisitorResponse toVisitorResponse() {
+        return VisitorResponse.newBuilder().
+                setId(userId.toString()).
+                setName(name).
+                setMoney(money).
+                setAge(age).
+                build();
     }
 }

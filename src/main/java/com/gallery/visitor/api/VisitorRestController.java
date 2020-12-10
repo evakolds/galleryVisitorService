@@ -16,7 +16,7 @@ import java.util.UUID;
 @RequestMapping("/visitor")
 @AllArgsConstructor
 @NoArgsConstructor
-public class VisitorController {
+public class VisitorRestController {
 
     @Autowired
     private VisitorService visitorService;
@@ -41,10 +41,4 @@ public class VisitorController {
                                  @RequestBody(required = false) WithdrawDto toWithdraw) {
         return visitorService.updateVisitorBalance(id, toWithdraw);
     }
-
-    @DeleteMapping("{id}")
-    public void deleteById(@PathVariable(name = "id") UUID id) {
-        visitorService.deleteVisitorById(id);
-    }
-
 }
